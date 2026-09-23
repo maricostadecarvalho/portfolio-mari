@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bella Pizza — Projeto</title>
+<style>
+:root{--pink:#e76b9c;--dark:#231b20;--bg:#fff5f8;--card:#fff;--line:#ead7df}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--dark)}
+header{padding:28px 6vw;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+h1{margin:0;color:#b94370}main{width:min(1100px,88vw);margin:35px auto}.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:24px}
+.auth{max-width:440px;margin:70px auto;text-align:center}.fields{display:grid;gap:12px}
+input,select,button{font:inherit;padding:12px;border-radius:9px;border:1px solid var(--line)}input,select{width:100%}
+button{background:var(--pink);color:#fff;border:0;font-weight:700;cursor:pointer}button.secondary{background:transparent;color:#b94370;border:1px solid var(--pink)}
+.actions{display:flex;gap:10px;flex-wrap:wrap}.layout{display:grid;grid-template-columns:320px 1fr;gap:25px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.card{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}.card img{width:100%;height:145px;object-fit:cover;background:#eee}.info{padding:15px}.meta{display:flex;justify-content:space-between;gap:10px;align-items:center}.badge{background:#f8dce8;color:#9e315e;padding:4px 8px;border-radius:20px;font-size:.75rem}
+.small{color:#766a70;font-size:.85rem}.hidden{display:none!important}@media(max-width:800px){.layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>Bella Pizza</h1><button id="logout" class="secondary">Sair</button></header>
+<main>
+<section id="auth" class="box auth">
+<h2>Painel Administrativo</h2><p class="small">Projeto funcional para demonstração do portfólio.</p>
+<div class="fields"><input id="email" type="email" placeholder="E-mail"><input id="senha" type="password" placeholder="Senha"></div>
+<div class="actions" style="margin-top:14px"><button id="login">Entrar</button><button id="signup" class="secondary">Criar conta</button></div>
+<p id="authMsg" class="small"></p>
+</section>
+
+<section id="dashboard" class="hidden">
+<div class="layout">
+<div class="box">
+<h2>Nova pizza</h2>
+<div class="fields">
+<input id="nome" placeholder="Nome da pizza">
+<input id="ingredientes" placeholder="Ingredientes">
+<select id="tipo"><option>Salgada</option><option>Doce</option></select>
+<input id="preco" type="number" step=".01" placeholder="Preço">
+<input id="imagem" type="url" placeholder="Link da imagem (opcional)">
+<button id="add">Adicionar ao cardápio</button>
+</div>
+</div>
+<div class="box"><h2>Cardápio</h2><div id="grid" class="grid"></div></div>
+</div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+let pizzas=JSON.parse(localStorage.getItem("bellaPizzas")||"[]");
+function save(){localStorage.setItem("bellaPizzas",JSON.stringify(pizzas))}
+function logged(){return localStorage.getItem("bellaUser")}
+function show(){ $("auth").classList.toggle("hidden",!!logged()); $("dashboard").classList.toggle("hidden",!logged()); render(); }
+function render(){ if(!logged())return; $("grid").innerHTML=pizzas.length?pizzas.map((p,i)=>`<article class="card"><img src="${p.imagem||'https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=700&q=80'}"><div class="info"><h3>${p.nome}</h3><p class="small">${p.ingredientes}</p><div class="meta"><b>R$ ${Number(p.preco).toFixed(2)}</b><span class="badge">${p.tipo}</span></div><button style="margin-top:12px" onclick="removePizza(${i})">Excluir</button></div></article>`).join(""):"<p class='small'>Nenhuma pizza cadastrada.</p>"}
+window.removePizza=i=>{pizzas.splice(i,1);save();render()}
+$("signup").onclick=()=>{let e=$("email").value.trim(),s=$("senha").value;if(!e||!s)return $("authMsg").textContent="Preencha e-mail e senha.";localStorage.setItem("bellaUser",e);show()}
+$("login").onclick=()=>{let e=$("email").value.trim(),s=$("senha").value;if(!e||!s)return $("authMsg").textContent="Preencha e-mail e senha.";localStorage.setItem("bellaUser",e);show()}
+$("logout").onclick=()=>{localStorage.removeItem("bellaUser");show()}
+$("add").onclick=()=>{let p={nome:$("nome").value.trim(),ingredientes:$("ingredientes").value.trim(),tipo:$("tipo").value,preco:$("preco").value,imagem:$("imagem").value.trim()};if(!p.nome||!p.ingredientes||!p.preco)return alert("Preencha nome, ingredientes e preço.");pizzas.push(p);save();["nome","ingredientes","preco","imagem"].forEach(id=>$(id).value="");render()}
+show();
+</script>
+</body>
+</html>

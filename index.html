@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Mariana Costa de Carvalho">
+    <title>Mariana Costa de Carvalho | Portfólio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="#inicio" class="logo">Meu Portfólio.</a>
+
+        <nav id="nav">
+            <a href="#inicio">Início</a>
+            <a href="#formacao">Formação</a>
+            <a href="#projetos">Projetos</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </header>
+
+    <main>
+        <section class="hero section" id="inicio">
+            <div class="hero-left">
+                <div class="photo-wrap">
+                    <div class="photo-placeholder hidden" id="photoPlaceholder">
+                        <span>+</span>
+                        <small>ADICIONE SUA FOTO</small>
+                    </div>
+                    <img id="profilePhoto" class="profile-photo" src="mariana-foto.jpeg" alt="Foto de Mariana Costa de Carvalho">
+                </div>
+
+                <input id="photoInput" type="file" accept="image/*" hidden>
+                <button class="photo-button" id="photoButton">Adicionar foto</button>
+
+                <h1>Mariana Costa<br><em>de Carvalho</em></h1>
+                <p class="subtitle">Desenvolvedora de Sistemas · Estudante</p>
+            </div>
+
+            <div class="hero-right">
+                <div class="quote">
+                    <span class="quote-mark">“</span>
+                    <blockquote>
+                        Não se pode esperar um final feliz de uma história de terror
+                    </blockquote>
+                    <cite>— Arthur Conan Doyle</cite>
+                </div>
+
+                <div class="intro-card">
+                    <span class="card-number">01 / SOBRE MIM</span>
+                    <h2>Ideias que ganham<br><em>forma através do código.</em></h2>
+                    <p>
+                        Este é meu espaço para apresentar minha formação,
+                        projetos e caminhos dentro da tecnologia.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="education section" id="formacao">
+            <div class="section-title">
+                <span>02 / FORMAÇÃO</span>
+                <h2>Minha <em>trajetória.</em></h2>
+            </div>
+
+            <div class="education-grid">
+                <article class="education-card">
+                    <span class="education-number">01</span>
+                    <div>
+                        <span class="education-tag">Ensino Médio</span>
+                        <h3>SESI</h3>
+                        <p>Formação no ensino médio.</p>
+                    </div>
+                </article>
+
+                <article class="education-card">
+                    <span class="education-number">02</span>
+                    <div>
+                        <span class="education-tag">Curso Técnico</span>
+                        <h3>Desenvolvimento de Sistemas</h3>
+                        <p>SENAI</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="projects section" id="projetos">
+            <div class="section-title projects-heading">
+                <div>
+                    <span>03 / PROJETOS</span>
+                    <h2>O que eu <em>criei.</em></h2>
+                </div>
+                <button class="pink-button" id="addProjectBtn">+ Adicionar projeto</button>
+            </div>
+
+            <div id="projectGrid" class="project-grid">
+                <article class="project-card">
+                    <div>
+                        <span class="card-number">PROJETO 01</span>
+                        <h3>Bella Pizza</h3>
+                        <p>Painel de gerenciamento de cardápio com login, cadastro de pizzas, preços, imagens e exclusão de itens.</p>
+                    </div>
+                    <a href="projetos/bella-pizza/index.html" target="_blank">Entrar no projeto ↗</a>
+                </article>
+
+                <article class="project-card">
+                    <div>
+                        <span class="card-number">PROJETO 02</span>
+                        <h3>Cafeteria Aroma</h3>
+                        <p>Interface de cafeteria com busca, filtro de produtos e carrinho interativo.</p>
+                    </div>
+                    <a href="projetos/cafeteria-aroma/index.html" target="_blank">Entrar no projeto ↗</a>
+                </article>
+                <article class="project-card project-placeholder">
+                    <div class="project-icon">+</div>
+                    <h3>Seu próximo projeto</h3>
+                    <p>Clique em “Adicionar projeto” para colocar aqui seus próximos trabalhos.</p>
+                </article>
+        </section>
+
+        <section class="contact section" id="contato">
+            <div class="contact-info">
+                <span>04 / CONTATO</span>
+                <h2>Vamos conversar<br><em>sobre ideias?</em></h2>
+
+                <div class="socials">
+                    <a href="https://github.com/maricostadecarvalho" target="_blank" rel="noopener">
+                        GitHub <strong>@maricostadecarvalho</strong> ↗
+                    </a>
+                    <a href="https://www.instagram.com/mari_.carvalhooo/" target="_blank" rel="noopener">
+                        Instagram <strong>@mari_.carvalhooo</strong> ↗
+                    </a>
+                    <a href="https://www.email.com/mari_.carvalhooo/" target="_blank" rel="noopener">
+                        Email <strong>@marianacostadecarvalho00@gmail.com</strong> ↗
+                    </a>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <label>
+                    E-mail
+                    <input id="email" type="email" placeholder="seu email">
+                </label>
+
+                <label>
+                    Telefone
+                    <input id="phone" type="tel" placeholder="(00) 00000-0000">
+                </label>
+
+                <label>
+                    Endereço
+                    <input id="address" type="text" placeholder="Sua cidade / endereço">
+                </label>
+
+                <button class="pink-button" type="submit">Salvar contatos ↗</button>
+                <p class="saved-message" id="savedMessage"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <span>© <span id="year"></span> Mariana Costa de Carvalho</span>
+        <a href="#inicio">Voltar ao topo ↑</a>
+    </footer>
+    <div class="modal hidden" id="projectModal" aria-hidden="true">
+        <div class="modal-box">
+            <button class="close-modal" id="closeModal" aria-label="Fechar">×</button>
+            <span class="modal-label">NOVO PROJETO</span>
+            <h2>Adicionar <em>projeto</em></h2>
+
+            <form id="projectForm">
+                <label>
+                    Nome do projeto
+                    <input id="projectName" type="text" placeholder="Ex.: Site de Receitas" required>
+                </label>
+
+                <label>
+                    Descrição
+                    <textarea id="projectDescription" rows="4" placeholder="Descreva seu projeto..." required></textarea>
+                </label>
+
+                <label>
+                    Link do projeto
+                    <input id="projectLink" type="url" placeholder="https://...">
+                </label>
+
+                <button class="pink-button" type="submit">Adicionar projeto</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

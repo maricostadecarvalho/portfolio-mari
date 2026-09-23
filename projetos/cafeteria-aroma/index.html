@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cafeteria Aroma</title>
+<style>
+:root{--brown:#3f012c;--cream:#fff8f3;--pink:#e76b9c;--muted:#766b70}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:#241b20;font-family:Arial,sans-serif}
+header{padding:35px 7vw;text-align:center;background:#fff;border-bottom:1px solid #eadfe2}h1{font-family:Georgia,serif;font-size:3rem;color:var(--brown);margin:0 0 8px}
+header p{color:var(--muted)}main{width:min(1100px,88vw);margin:30px auto}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}
+input,select,button{padding:12px;border:1px solid #dfd0d6;border-radius:9px;font:inherit}input{flex:1;min-width:220px}button{cursor:pointer;background:var(--brown);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}.card{background:#fff;border:1px solid #eadfe2;border-radius:15px;overflow:hidden;box-shadow:0 5px 18px #3f012c12}.card img{width:100%;height:170px;object-fit:cover}.info{padding:16px}.price{color:var(--pink);font-weight:700}.cart{position:fixed;right:22px;bottom:22px;background:var(--pink);padding:15px 18px;border-radius:30px;box-shadow:0 10px 30px #e76b9c55}
+.small{color:var(--muted);font-size:.88rem}
+</style>
+</head>
+<body>
+<header><h1>Cafeteria Aroma</h1><p>Cafés especiais e momentos inesquecíveis.</p></header>
+<main>
+<div class="toolbar"><input id="search" placeholder="Buscar café, doce..."><select id="filter"><option value="all">Todos</option><option value="coffee">Cafés</option><option value="food">Comidas</option></select></div>
+<div id="grid" class="grid"></div>
+</main>
+<button class="cart" id="cart">Carrinho: 0</button>
+<script>
+const products=[
+{name:"Café Aroma",type:"coffee",price:8.5,img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=80",desc:"Café especial preparado na hora."},
+{name:"Cappuccino",type:"coffee",price:12,img:"https://images.unsplash.com/photo-1572449043416-55f7e4e0d0a9?auto=format&fit=crop&w=700&q=80",desc:"Cappuccino cremoso com espuma de leite."},
+{name:"Bolo de Chocolate",type:"food",price:10,img:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80",desc:"Fatia de bolo macio com chocolate."},
+{name:"Croissant",type:"food",price:9.5,img:"https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=80",desc:"Croissant dourado e crocante."},
+{name:"Latte",type:"coffee",price:11,img:"https://images.unsplash.com/photo-1561882468-9110e03e0f78?auto=format&fit=crop&w=700&q=80",desc:"Espresso com leite vaporizado."},
+{name:"Pão de Queijo",type:"food",price:7,img:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80",desc:"Porção quentinha de pão de queijo."}
+];
+let count=0;
+function render(){let q=document.getElementById("search").value.toLowerCase(),f=document.getElementById("filter").value;let list=products.filter(p=>(f==="all"||p.type===f)&&(p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)));document.getElementById("grid").innerHTML=list.map((p,i)=>`<article class="card"><img src="${p.img}" alt="${p.name}"><div class="info"><h2>${p.name}</h2><p class="small">${p.desc}</p><p class="price">R$ ${p.price.toFixed(2)}</p><button onclick="add()">Adicionar</button></div></article>`).join("")||"<p>Nenhum produto encontrado.</p>"}
+function add(){count++;document.getElementById("cart").textContent="Carrinho: "+count}
+document.getElementById("search").oninput=render;document.getElementById("filter").onchange=render;render();
+</script>
+</body>
+</html>
